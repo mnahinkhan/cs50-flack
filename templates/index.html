@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flack - online messaging service</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Asap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Yellowtail|Noto+Sans">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename="css/styles.css")}}">
+    <script src="{{ url_for('static',filename="js/index.js")}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+
+    {% raw %}
+    <script id="logged_out" type="text/template">
+        <div class= "logged_out">
+            <div class="welcome_title">
+                <h1> Welcome to Flack </h1>
+            </div>
+            <div class = "display_name_entry container">
+                <div class="row">
+                    <div class="col-6 offset-3">
+                        <form id = "register_form" class="container">
+                            <div class="row">
+                                <input id="display_name_field" type="text" name="display_name" placeholder="Enter a display name to get started..."
+                                         class="col-8 offset-1">
+                                <button id="register_button" class="btn btn-primary col-3">Let's go!</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script id="logged_in" type="text/template">
+        <div class="logged_in container">
+            <div class="row no-gutters" id="application-window">
+                <div class="col-4">
+                    <div class="left-pane container">
+                        <div class="row welcome-section">
+                            <div class="container">
+                                <div class="flack-title row justify-content-center">
+                                    <h3>Flack</h3>
+                                </div>
+                                <div class="welcome-subsection row justify-content-center">
+                                    <p>Welcome, {{ display_name }}!</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row channel-list justify-content-center">
+                            <div class="container">
+                                <div class="row justify-content-center channel-listing-subtitle">
+                                    <h4>List of channels available</h4>
+                                </div>
+                                <div class="row>">
+                                    <div class="channel-sub-listing container">
+                                        {{#each channels}}
+                                            <a href=""><div class="row channel-name justify-content-center" data-channel_name="{{this}}">
+                                                <p>#{{this}}</p>
+                                            </div></a>
+
+                                        {{/each}}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-8">
+                    <div class="right-pane container">
+                        <div class="row messages-section">
+                            <div class="container" id="message-template-insertion-zone">
+                                {{!-- {{Place messages here using messages template!}} --}}
+                            </div>
+
+                        </div>
+                        <div class="row message-typing-zone">
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </script>
+
+
+    <script id="messages_template" type="text/template">
+        {{#each messages}}
+            <div class="row message">
+                <div class="col-6 message_others">
+                    {{#unless this.is_myself}}
+                    <p><b>{{this.sender}}</b>: {{ this.message }}</p>
+                    <p class="timestamp">{{ this.timestamp }}</p>
+                    {{/unless}}
+
+                </div>
+                <div class="col-6 message_mine">
+                    {{#if this.is_myself}}
+                        <p><b>{{this.sender}}</b>: {{ this.message }}</p>
+                    <p class="timestamp">{{ this.timestamp }}</p>
+                    {{/if}}
+                </div>
+
+            </div>
+
+        {{/each}}
+    </script>
+
+    {% endraw %}
+
+</head>
+<body>
+
+</body>
+</html>

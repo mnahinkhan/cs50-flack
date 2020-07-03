@@ -1,0 +1,205 @@
+@keyframes move {
+                from {
+                    padding-top: 0;
+                  opacity: 0;
+                }
+                to  {
+                    padding-top: 320px;
+                    opacity: 1;
+                }
+            }
+
+.welcome_title {
+  h1 {
+    text-align: center;
+    font-family: 'Asap', serif;
+    font-size: 72pt;
+    text-shadow: 4px 4px 4px #aaa;
+    animation-name: move;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+    opacity: 0;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+  
+}
+.display_name_entry {
+  padding-top: 30px;
+  animation-name: appear;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-delay: 2.2s;
+  opacity: 0;
+}
+
+.fade_element {
+  opacity: 1;
+  visibility: visible;
+  transition: all 1s;
+}
+
+.fade_out {
+  opacity:0;
+  visibility: hidden;
+}
+
+.enter_out {
+  opacity: 0;
+  //padding-top: 100vh;
+  visibility: hidden;
+  transition: all 1s ease-in-out;
+}
+
+.enter_element {
+  opacity: 1;
+  //padding-top: 0;
+  visibility: visible;
+
+}
+
+
+
+.left-pane {
+  background-color: #753DC6;
+  border-top-left-radius:15px;
+  border-bottom-left-radius:15px;
+}
+
+.right-pane {
+  background-color: #F7F4F7;
+  border-top-right-radius:15px;
+  border-bottom-right-radius:15px;
+}
+
+$welcome_section_height: 140px;
+$message_typing_section_height: 140px;
+
+.welcome-section {
+  background: #49267C;
+  height: $welcome_section_height;
+  h3 {
+    text-align: center;
+    color: white;
+    font-size: 60px;
+    font-family: 'Yellowtail', serif;
+  }
+  border-top-left-radius:15px;
+  p {
+    color: #F7F4F7;
+  }
+
+}
+
+h4 {
+  text-align: center;
+}
+
+.channel-list {
+  height: calc(99vh - #{$welcome_section_height});
+  padding-top: 40px;
+  h4 {
+    font-size: 18px;
+    color: antiquewhite;
+    font-weight: normal;
+    font-family: 'Noto Sans Kannada', sans-serif;
+  }
+}
+
+
+
+$channel_listing_subtitle_height: 29px;
+.channel-listing-subtitle {
+  height: $channel_listing_subtitle_height;
+
+}
+.channel-sub-listing {
+  height: calc(99vh - #{$welcome_section_height} - #{$channel_listing_subtitle_height} - 48px);
+  overflow: auto;
+}
+
+.logged_in {
+  height: 99vh;
+
+
+}
+
+
+#application-window {
+  border-radius: 15px;
+border: 1px solid #3A1E63;
+  margin-top: 3px;
+}
+
+.messages-section {
+  border-top-right-radius: 15px;
+  padding-top: 30px;
+  height: calc(99vh - #{$message_typing_section_height});
+  background: #FDFCFE;
+  overflow: auto;
+
+  p.timestamp {
+    font-size: 10px;
+    margin-bottom: 20px;
+    color: gray;
+  }
+  p {
+    margin-bottom: 0;
+  }
+
+  .message_mine {
+    p {
+        text-align: right;
+      }
+  }
+
+}
+
+
+.message-typing-zone {
+  background: #EEE7F8;
+  height: $message_typing_section_height;
+  border-bottom-right-radius: 15px;
+}
+
+.channel-name {
+  p {
+    margin-bottom:0;
+  }
+}
+
+
+
+a:hover {
+  text-decoration: none;
+}
+
+.channel-name {
+  border-radius: 15px;
+
+  p {
+    color: ghostwhite;
+  }
+}
+
+  .channel-name.selected {
+    p {
+      font-weight: bold;
+      color: #C63D8E;
+    }
+    background: #6635AD;
+  }
+
+
+.channel-name:hover {
+  background: #6635AD;
+}
+
