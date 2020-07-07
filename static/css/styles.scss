@@ -144,7 +144,7 @@ border: 1px solid #3A1E63;
   padding-top: 30px;
   height: calc(99vh - #{$message_typing_section_height});
   background: #FDFCFE;
-  overflow: auto;
+
 
   p.timestamp {
     font-size: 10px;
@@ -161,6 +161,11 @@ border: 1px solid #3A1E63;
       }
   }
 
+  .messages-subsection {
+    height: calc(99vh - #{$message_typing_section_height} - 60px);
+    overflow: auto;
+  }
+
 }
 
 
@@ -168,12 +173,40 @@ border: 1px solid #3A1E63;
   background: #EEE7F8;
   height: $message_typing_section_height;
   border-bottom-right-radius: 15px;
+  input {
+    background: #FDFCFE;
+  }
+  #send-button {
+    background: #753DC6;
+    color: white;
+    font-size: 8px;
+    @media (min-width: 768px) {
+      font-size: 15px;
+    }
+  }
+
 }
+
+@keyframes grow {
+  0% {
+    opacity: 0;
+    height: 0;
+  }
+  100% {
+    opacity: 1;
+    height: 100%;
+  }
+
+}
+
 
 .channel-name {
   p {
     margin-bottom:0;
   }
+  animation-name: grow;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
 }
 
 
@@ -188,6 +221,7 @@ a:hover {
   p {
     color: ghostwhite;
   }
+
 }
 
   .channel-name.selected {
@@ -203,3 +237,44 @@ a:hover {
   background: #6635AD;
 }
 
+
+
+#list_of_channels_text:before {
+  content: "List of channels";
+    @media (min-width: 768px) {
+      content: "List of channels available";
+    }
+
+        //// Medium devices (tablets, 768px and up)
+        //@media (min-width: 768px) {
+        //      content: "";
+        //    }
+        //
+        //// Large devices (desktops, 992px and up)
+        //@media (min-width: 992px) {
+        //      content: "3";
+        //    }
+        //
+        //// Extra large devices (large desktops, 1200px and up)
+        //@media (min-width: 1200px) {
+        //      content: "4";
+        //    }
+}
+
+
+#new-channel-input {
+  background: #753DC6;
+  border: 0;
+  text-align: center;
+  outline: none;
+  color: white;
+}
+
+.beginning-of-messages {
+  p {
+    text-align: center;
+    font-size: 10px;
+    margin-bottom: 20px;
+    color: gray;
+  }
+}

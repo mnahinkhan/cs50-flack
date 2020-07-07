@@ -125,7 +125,6 @@ h4 {
   padding-top: 30px;
   height: calc(99vh - 140px);
   background: #FDFCFE;
-  overflow: auto;
 }
 .messages-section p.timestamp {
   font-size: 10px;
@@ -138,13 +137,45 @@ h4 {
 .messages-section .message_mine p {
   text-align: right;
 }
+.messages-section .messages-subsection {
+  height: calc(99vh - 140px - 60px);
+  overflow: auto;
+}
 
 .message-typing-zone {
   background: #EEE7F8;
   height: 140px;
   border-bottom-right-radius: 15px;
 }
+.message-typing-zone input {
+  background: #FDFCFE;
+}
+.message-typing-zone #send-button {
+  background: #753DC6;
+  color: white;
+  font-size: 8px;
+}
+@media (min-width: 768px) {
+  .message-typing-zone #send-button {
+    font-size: 15px;
+  }
+}
 
+@keyframes grow {
+  0% {
+    opacity: 0;
+    height: 0;
+  }
+  100% {
+    opacity: 1;
+    height: 100%;
+  }
+}
+.channel-name {
+  animation-name: grow;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
 .channel-name p {
   margin-bottom: 0;
 }
@@ -170,6 +201,30 @@ a:hover {
 
 .channel-name:hover {
   background: #6635AD;
+}
+
+#list_of_channels_text:before {
+  content: "List of channels";
+}
+@media (min-width: 768px) {
+  #list_of_channels_text:before {
+    content: "List of channels available";
+  }
+}
+
+#new-channel-input {
+  background: #753DC6;
+  border: 0;
+  text-align: center;
+  outline: none;
+  color: white;
+}
+
+.beginning-of-messages p {
+  text-align: center;
+  font-size: 10px;
+  margin-bottom: 20px;
+  color: gray;
 }
 
 /*# sourceMappingURL=styles.css.map */

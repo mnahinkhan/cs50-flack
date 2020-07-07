@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename="css/styles.css")}}">
     <script src="{{ url_for('static',filename="js/index.js")}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
 
     {% raw %}
     <script id="logged_out" type="text/template">
@@ -51,16 +52,17 @@
                         <div class="row channel-list justify-content-center">
                             <div class="container">
                                 <div class="row justify-content-center channel-listing-subtitle">
-                                    <h4>List of channels available</h4>
+                                    <h4 id="list_of_channels_text"></h4>
                                 </div>
                                 <div class="row>">
                                     <div class="channel-sub-listing container">
-                                        {{#each channels}}
-                                            <a href=""><div class="row channel-name justify-content-center" data-channel_name="{{this}}">
-                                                <p>#{{this}}</p>
-                                            </div></a>
 
-                                        {{/each}}
+                                        <div class="row justify-content-center" id="channel-creation-button">
+                                            <form id="new-channel-form"><input placeholder="create a new channel..." id="new-channel-input"></form>
+                                        </div>
+                                        <div id="channels-template-insertion-zone">
+                                            {{!-- {{Place channels here using messages template!}} --}}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +80,25 @@
                             </div>
 
                         </div>
-                        <div class="row message-typing-zone">
+                        <div class="row message-typing-zone align-items-center">
+
+
+                                    <form class="container" id="message-send-form">
+                                        <div class="row">
+                                            <input placeholder="type a message..." class="col-9 offset-1" id="message-input-area">
+
+                                            <div class="col-2">
+                                                <button id="send-button">Send</button>
+                                            </div>
+
+
+                                        </div>
+
+
+                                    </form>
+
+
+
 
 
 
@@ -94,27 +114,46 @@
 
 
     <script id="messages_template" type="text/template">
-        {{#each messages}}
-            <div class="row message">
-                <div class="col-6 message_others">
-                    {{#unless this.is_myself}}
-                    <p><b>{{this.sender}}</b>: {{ this.message }}</p>
-                    <p class="timestamp">{{ this.timestamp }}</p>
-                    {{/unless}}
+        <div class="beginning-of-messages">
+            <p>Messages for <b>#{{ channel_name }}</b></p>
+        </div>
 
-                </div>
-                <div class="col-6 message_mine">
-                    {{#if this.is_myself}}
+        <div class="messages-subsection">
+            {{#each messages}}
+                <div class="row message">
+                    <div class="col-6 message_others">
+                        {{#unless this.is_myself}}
                         <p><b>{{this.sender}}</b>: {{ this.message }}</p>
-                    <p class="timestamp">{{ this.timestamp }}</p>
-                    {{/if}}
+                        <p class="timestamp">{{ this.timestamp }}</p>
+                        {{/unless}}
+
+                    </div>
+                    <div class="col-6 message_mine">
+                        {{#if this.is_myself}}
+                            <p><b>{{this.sender}}</b>: {{ this.message }}</p>
+                        <p class="timestamp">{{ this.timestamp }}</p>
+                        {{/if}}
+                    </div>
+
                 </div>
 
-            </div>
+            {{/each}}
+        </div>
+    </script>
 
+    <script id="channels_template" type="text/template">
+        {{#each channels}}
+            {{> each_channel_partial channel_name=this }}
         {{/each}}
     </script>
 
+    <script id="each_channel_partial_template" type="text/template">
+        <a href="">
+            <div class="row channel-name justify-content-center" data-channel_name="{{channel_name}}">
+                <p>#{{channel_name}}</p>
+            </div>
+        </a>
+    </script>
     {% endraw %}
 
 </head>
