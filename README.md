@@ -25,4 +25,12 @@ client could get the messages shared so far on each channel whenever they wished
 To run this web app, download the files and type "flask run" on the terminal, then go to the URL specified on the
 terminal.
 
+There are three main additional features that I have implemented for this project beyond the requirements of the course:
+1. Separating messages into those that are sent by "self" and those that are sent by "others", by placing them on
+different sides of the chat window
+2. Maintaining a sorted order of chat names in the chat list alphabetically, including live insertion at the correct
+place to maintain sorted order upon broadcast of channel creation from server
+3. Allowing multiple users to have the same display name but still maintain distinctness among them, through
+registration of unique id's for clients upon request to the server. This way, two users with the same display name can 
+ communicate while knowing which messages are theirs and which ones are the others'. 
 
