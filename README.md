@@ -1,4 +1,4 @@
-# Flack - A single page Web App
+# Flack - A single page messaging web app
 
 For YouTube intro, see: https://youtu.be/uOBzg_9T1ec
 
