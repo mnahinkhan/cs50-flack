@@ -1,4 +1,6 @@
-# Project 2 - Flack - A single page Web App
+# Flack - A single page Web App
+
+For YouTube intro, see: https://youtu.be/uOBzg_9T1ec
 
 For CS50 - Web Programming with Python and JavaScript course
 
